@@ -16,22 +16,22 @@ passport.serializeUser(function (user, cb) {
       clientID:process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       callbackURL: process.env.FACEBOOK_CALLBACK_URL,
-      profileFields: ['id', 'displayName', 'photos', 'email'],
+      profileFields: ['id', 'displayName', 'photos', 'email','accounts'],
       enableProof:true
       
     }, function (accessToken, refreshToken, profile, done) {
       console.log(profile);
-      return done(null, profile);
-        // process.nextTick(function(){
-        //     let userAccount= new UserData();
-        //     userAccount.facebookId = profile.id;                  
-        //     userAccount.token = accessToken;                     
-        //     userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
-        //     userAccount.email = profile.emails[0].value; 
-        //     userAccount.extraInfo = profile.photos[0].value
-        //     console.log(userAccount);
-           
-        // });
+      
+        process.nextTick(function(){
+            let userAccount= new UserData();
+            userAccount.facebookId = profile.id;                  
+            userAccount.token = accessToken;                     
+            userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
+            userAccount.email = profile.emails[0].value; 
+            userAccount.extraInfo = profile.photos[0].value
+            console.log(userAccount);
+            return done(null, profile);
+        });
         
      
     }
