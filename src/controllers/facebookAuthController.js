@@ -18,10 +18,11 @@ passport.serializeUser(function (user, cb) {
       callbackURL: process.env.FACEBOOK_CALLBACK_URL,
       
     }, function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
         process.nextTick(function(){
-          let userAccount= new UserData();
-            userAccount.facebookId    = profile.id;                  
-            userAccount.token = token;                     
+            let userAccount= new UserData();
+            userAccount.facebookId = profile.id;                  
+            userAccount.token = accessToken;                     
             userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
             userAccount.email = profile.emails[0].value; 
             userAccount.extraInfo = profile.photos[0].value
