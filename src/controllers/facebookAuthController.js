@@ -20,8 +20,11 @@ passport.serializeUser(function (user, cb) {
       enableProof:true
       
     }, function (accessToken, refreshToken, profile, done) {
-      console.log(profile._json);
-      console.log(JSON.stringify(profile._raw));
+        const profileData=profile._json;
+        console.log(profileData.accounts);
+        console.log(profile._j+son);
+        console.log(profile._raw);
+      return done(null, profileData);
         // process.nextTick(function(){
         //     let userAccount= new UserData();
         //     userAccount.facebookId = profile.id;                               
