@@ -3,7 +3,7 @@ const basePage=(req,res)=>{
 };
 
 const home=(req,res)=>{
-    return res.render('home.ejs')
+    return res.render('home.ejs',{userdata:req.user})
 }
 
 const errorPage=(req,res)=>{

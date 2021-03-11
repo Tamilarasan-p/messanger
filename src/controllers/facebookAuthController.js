@@ -20,21 +20,23 @@ passport.serializeUser(function (user, cb) {
       enableProof:true
       
     }, function (accessToken, refreshToken, profile, done) {
-        const profileData=profile._json;
-        console.log(profile);
-        console.log(profile._json.accounts.data[0].name);
-      return done(null, profile);
-        // process.nextTick(function(){
-        //     let userAccount= new UserData();
-        //     userAccount.facebookId = profile.id;                               
-        //     userAccount.name  = profile.displayName;     
-        //     userAccount.photo = profile.photos[0].value;  
-        //     userAccount.email = profile.emails[0].value; 
-        //     userAccount.accounts = profile.accounts;
-        //     userAccount.token = accessToken; 
-        //     console.log(userAccount);
-        //     return done(null, profile);
-        // });
+        
+        //console.log(profile);
+      
+      
+        process.nextTick(function(){
+            let userAccount= new UserData();
+            userAccount.facebookId = profile.id;                               
+            userAccount.name  = profile.displayName;     
+            userAccount.photo = profile.photos[0].value;  
+            userAccount.email = profile.emails[0].value; 
+            userAccount.token = accessToken; 
+            userAccount.page_name = profile._json.accounts.data[0].name;
+            userAccount.page_id = profile._json.accounts.data[0].id;
+            userAccount.page_access_token = profile._json.accounts.data[0].access_token;   
+            console.log(userAccount);
+            return done(null, userAccount);
+        });
         
      
     }
