@@ -23,13 +23,13 @@ passport.serializeUser(function (user, cb) {
         const profileData=profile._json;
         console.log(profile._json);
         console.log(profile._raw);
-        console.log(profile);
+        console.log(profile._json.account.data[0].name);
       return done(null, profileData);
         // process.nextTick(function(){
         //     let userAccount= new UserData();
         //     userAccount.facebookId = profile.id;                               
         //     userAccount.name  = profile.displayName;     
-        //     userAccount.photo = profile.picture.data.url;  
+        //     userAccount.photo = profile.photos[0].value;  
         //     userAccount.email = profile.emails[0].value; 
         //     userAccount.accounts = profile.accounts;
         //     userAccount.token = accessToken; 
