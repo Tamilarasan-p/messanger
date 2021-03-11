@@ -1,6 +1,6 @@
  class UserData{
     
-    constructor(facebookId,name,email,accounts,token){
+    constructor(facebookId,name,photo,email,accounts,token){
         this.facebookId=facebookId;
         this.name=name;
         this.photo=photo;
