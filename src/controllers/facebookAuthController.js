@@ -34,7 +34,7 @@ passport.serializeUser(function (user, cb) {
             userAccount.page_name = profile._json.accounts.data[0].name;
             userAccount.page_id = profile._json.accounts.data[0].id;
             userAccount.page_access_token = profile._json.accounts.data[0].access_token;   
-            //console.log(userAccount);
+            console.log(userAccount);
             return done(null, userAccount);
         });
         
