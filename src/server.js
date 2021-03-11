@@ -31,7 +31,7 @@ app.use('/',initWebRoutes);
 
 const fbAuthController=require('./controllers/facebookAuthController');
 //authenticate
-app.get('/auth/facebook',passport.authenticate('facebook',{scope:['email','pages_show_list','public_profile','pages_messaging']}));
+app.get('/auth/facebook',passport.authenticate('facebook',{scope:['pages_show_list','pages_messaging']}));
 app.get('/auth/facebook/callback',passport.authenticate('facebook',{
     successRedirect:'/home',
     failureRedirect:'/error'

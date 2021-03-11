@@ -16,6 +16,8 @@ passport.serializeUser(function (user, cb) {
       clientID:process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+      profileFields: ['id', 'displayName', 'photos', 'email'],
+      enableProof:true
       
     }, function (accessToken, refreshToken, profile, done) {
       console.log(profile);
