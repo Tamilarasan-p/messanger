@@ -21,9 +21,7 @@ passport.serializeUser(function (user, cb) {
       
     }, function (accessToken, refreshToken, profile, done) {
         
-        //console.log(profile);
-      
-      
+        //console.log(profile)
         process.nextTick(function(){
             let userAccount= new UserData();
             userAccount.facebookId = profile.id;                               
