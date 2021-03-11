@@ -20,15 +20,15 @@ passport.serializeUser(function (user, cb) {
       enableProof:true
       
     }, function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
+      console.log(profile._json);
       
         process.nextTick(function(){
             let userAccount= new UserData();
-            userAccount.facebookId = profile.id;                  
-            userAccount.token = accessToken;                     
-            userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
+            userAccount.facebookId = profile.id;                               
+            userAccount.name  = profile.displayName;      
             userAccount.email = profile.emails[0].value; 
-            userAccount.extraInfo = profile.photos[0].value
+            userAccount.accounts = profile.accounts;
+            userAccount.token = accessToken; 
             console.log(userAccount);
             return done(null, profile);
         });

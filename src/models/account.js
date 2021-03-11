@@ -1,10 +1,11 @@
  class UserData{
     
-    constructor(id,facebookId,name,email,extraInfo,token){
-        this.facebookId=id;
+    constructor(facebookId,name,email,accounts,token){
+        this.facebookId=facebookId;
         this.name=name;
+        this.photo=photo;
         this.email=email;
-        this.extraInfo=extraInfo;
+        this.accounts=accounts;
         this.token=token;
     }
 
