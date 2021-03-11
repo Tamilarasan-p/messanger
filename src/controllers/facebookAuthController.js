@@ -21,9 +21,9 @@ passport.serializeUser(function (user, cb) {
       
     }, function (accessToken, refreshToken, profile, done) {
         const profileData=profile._json;
-        console.log(profileData.accounts.data["name"]);
+        console.log("Test: " + profileData.accounts['data']);
         console.log(profile._json);
-        console.log(profile._raw);
+        console.log("Raw: " +profile._raw);
       return done(null, profileData);
         // process.nextTick(function(){
         //     let userAccount= new UserData();
