@@ -21,18 +21,18 @@ passport.serializeUser(function (user, cb) {
       
     }, function (accessToken, refreshToken, profile, done) {
       console.log(profile._json);
-      
-        process.nextTick(function(){
-            let userAccount= new UserData();
-            userAccount.facebookId = profile.id;                               
-            userAccount.name  = profile.displayName;     
-            userAccount.photo = profile.picture.data.url;  
-            userAccount.email = profile.emails[0].value; 
-            userAccount.accounts = profile.accounts;
-            userAccount.token = accessToken; 
-            console.log(userAccount);
-            return done(null, profile);
-        });
+      console.log(JSON.stringify(profile._raw));
+        // process.nextTick(function(){
+        //     let userAccount= new UserData();
+        //     userAccount.facebookId = profile.id;                               
+        //     userAccount.name  = profile.displayName;     
+        //     userAccount.photo = profile.picture.data.url;  
+        //     userAccount.email = profile.emails[0].value; 
+        //     userAccount.accounts = profile.accounts;
+        //     userAccount.token = accessToken; 
+        //     console.log(userAccount);
+        //     return done(null, profile);
+        // });
         
      
     }
