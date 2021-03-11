@@ -19,16 +19,17 @@ passport.serializeUser(function (user, cb) {
       
     }, function (accessToken, refreshToken, profile, done) {
       console.log(profile);
-        process.nextTick(function(){
-            let userAccount= new UserData();
-            userAccount.facebookId = profile.id;                  
-            userAccount.token = accessToken;                     
-            userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
-            userAccount.email = profile.emails[0].value; 
-            userAccount.extraInfo = profile.photos[0].value
-            console.log(userAccount);
-            return done(null, profile);
-        });
+      return done(null, profile);
+        // process.nextTick(function(){
+        //     let userAccount= new UserData();
+        //     userAccount.facebookId = profile.id;                  
+        //     userAccount.token = accessToken;                     
+        //     userAccount.name  = profile.name.givenName + ' ' + profile.name.familyName; 
+        //     userAccount.email = profile.emails[0].value; 
+        //     userAccount.extraInfo = profile.photos[0].value
+        //     console.log(userAccount);
+           
+        // });
         
      
     }
