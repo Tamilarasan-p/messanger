@@ -99,7 +99,7 @@ function callSendAPI(sender_psid, response) {
         "message":response
     }
 
-    const URL=`https://graph.facebook.com/v10.0/me/messages?access_token=${process.env.FB_PAGE_ACCESS_TOKEN}`;
+    const URL=`https://graph.facebook.com/v2.6/me/messages/messages?access_token=${process.env.FB_PAGE_ACCESS_TOKEN}`;
     //param.append('access_token',process.env.FB_PAGE_ACCESS_TOKEN);
 
 
