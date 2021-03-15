@@ -16,7 +16,7 @@ const postMethodWebhook=(req,res)=>{
       body.entry.forEach(function(entry) {
   
         // Gets the message. entry.messaging is an array, but 
-        // will only ever contain one message, so we get index 0
+        // will only ever contain one message, so we get i   ndex 0
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
         let sender_psid=webhook_event.sender.id;
@@ -49,7 +49,7 @@ const postMethodWebhook=(req,res)=>{
 
 const getMethodWebhook=(req,res)=>{
     let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
-    
+    console.log(VERIFY_TOKEN);
   // Parse the query params
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -93,29 +93,28 @@ function handlePostback(sender_psid, received_postback) {
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
-    let body={
-        "recepient":{
-            "id":sender_psid
-        },
-        "message":response
-    }
+  console.log(response);
+    // Construct the message body
+  let request_body = {
+    "recipient": {
+      "id": sender_psid
+    },
+    "message": response
+  }
 
-    //const URL=`https://graph.facebook.com/v2.6/me/messages?access_token=${process.env.FB_PAGE_ACCESS_TOKEN}`;
-    //param.append('access_token',process.env.FB_PAGE_ACCESS_TOKEN);
-
-
-    request({
-      "uri": "https://graph.facebook.com/v6.0/me/messages",
-      "qs": { "access_token": process.env.FB_PAGE_ACCESS_TOKEN },
-      "method": "POST",
-      "json": body
+  // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
+    "qs": { "access_token": process.env.FB_PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
   }, (err, res, body) => {
-      if (!err) {
-          console.log('message sent!'+res);
-      } else {
-          console.error("Unable to send message:" + err);
-      }
-  });
+    if (!err) {
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
 }
 
 module.exports={
