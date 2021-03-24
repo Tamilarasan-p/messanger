@@ -15,7 +15,7 @@ let getFacebookUserName=(sender_id)=>{
       "method": "GET",
     }, (err, res, body) => {
       if (!err) {
-           console.log(body);
+            console.log(body);
             body=JSON.parse(body);
             let username=`${body.first_name} ${body.last_name}`
             resolve(username);

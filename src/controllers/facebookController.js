@@ -128,10 +128,10 @@ const getMethodWebhook=(req,res)=>{
 const handleMessage= async (sender_psid, received_message) => {
     let response_message;
     if(received_message.text){
-        let user=await chatBotServices.getFacebookUserName(sender_psid);
+        let username=await chatBotServices.getFacebookUserName(sender_psid);
         let welcomeNote=dataConfig.messages.welcomeMessage
-        console.log(user);
-        response_message=`Welcome ${user}  ${welcomeNote}`;
+        console.log(username);
+        response_message={"text":`Welcome ${username},  ${welcomeNote}`};
     }
 
     chatBotServices.sendWelcomeMessage(sender_psid,response_message);
