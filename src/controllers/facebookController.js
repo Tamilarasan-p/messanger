@@ -137,15 +137,14 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
   let payload=received_postback.payload;
-
+  let response_message;
   if(payload==="GET_STARTED"){
-    response=askCategory();
+    console.log("Triggered");
+    response_message=askCategory();
   }
   
-
-
   //calling API send function
-  callSendAPI(sender_psid,response);
+  callSendAPI(sender_psid,response_message);
 }
 
 
@@ -164,7 +163,7 @@ const makeResponse=(text)=>{
             "subtitle": "Tap to Get Started.",
             "buttons":[{
                 "type":"postback",
-                "title":"GET_STARTED",
+                "title":"GET STARTED",
                 "payload":"GET_STARTED"
               }]
           }]
