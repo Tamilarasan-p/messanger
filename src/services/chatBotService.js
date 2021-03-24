@@ -52,7 +52,7 @@ const sendWelcomeMessage = (sender_psid,response)=>{
                             "buttons": [
                               {
                                 "type": "postback",
-                                "title": "Show Categories",
+                                "title": "Shop Now",
                                 "payload": "CATEGORY",
                               }
                             ],
@@ -75,12 +75,12 @@ const sendWelcomeMessage = (sender_psid,response)=>{
 
 //sending category list
 
-const sendCategory=(sender_psid)=>{
+const sendMainCategory=(sender_psid)=>{
     return new Promise( async(resolve,reject)=>{
 
             try{
 
-                let category_response=categoryResponse();
+                let category_response=mainCategory_Response();
                 await callSendAPI(sender_psid,category_response)
                 resolve("done");
             }catch(e){
@@ -94,13 +94,13 @@ const sendCategory=(sender_psid)=>{
 
 //sending category list
 
-const sendSubCategory=(sender_psid)=>{
+const sendGroceryList=(sender_psid)=>{
     return new Promise( async(resolve,reject)=>{
 
             try{
 
-                let subcategory_response=subCategoryResponse();
-                await callSendAPI(sender_psid,subcategory_response)
+                let grocery_response=groceryItems_Response();
+                await callSendAPI(sender_psid,grocery_response)
                 resolve("done");
             }catch(e){
                 reject(e);
@@ -109,13 +109,30 @@ const sendSubCategory=(sender_psid)=>{
     });
 };
 
-const sendShirtsMen=(sender_psid)=>{
+const sendGrainsList=(sender_psid)=>{
     return new Promise( async(resolve,reject)=>{
 
             try{
 
-                let product_response=productResponse_Men();
-                await callSendAPI(sender_psid,product_response)
+                let grains_response=grainsItems_Response();
+                await callSendAPI(sender_psid,grains_response)
+                resolve("done");
+            }catch(e){
+                reject(e);
+            }
+    });
+};
+
+
+//send spices list
+
+const sendSpicesList=(sender_psid)=>{
+    return new Promise( async(resolve,reject)=>{
+
+            try{
+
+                let spices_response=spicesItems_Response();
+                await callSendAPI(sender_psid,spices_response)
                 resolve("done");
             }catch(e){
                 reject(e);
@@ -127,7 +144,7 @@ const sendShirtsMen=(sender_psid)=>{
 
 //create category response
 
-const categoryResponse=()=>{
+const mainCategory_Response=()=>{
     return{
       "attachment":{
         "type":"template",
@@ -135,21 +152,32 @@ const categoryResponse=()=>{
           "template_type": "generic",
           "elements":[
             {
-              "title": "Men",
+              "title": "Groceries",
+              "subtitle":"Fresho",
               "buttons":[{
                   "type":"postback",
-                  "title":"Men",
-                  "payload":"MEN"
+                  "title":"View Items",
+                  "payload":"GROCERY"
                 }]
             },
             {
-                "title": "Women",
+                "title": "Grains",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Women",
-                    "payload":"WOMEN"
+                    "title":"View Items",
+                    "payload":"GRAINS"
                   }]
-              }
+            },
+            {
+                "title": "Spices",
+                "subtitle":"Fresho",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"View Items",
+                    "payload":"SPICES"
+                  }]
+            }
         
         ]
            
@@ -160,7 +188,7 @@ const categoryResponse=()=>{
   
   
 
-  const subCategoryResponse=()=>{
+  const groceryItems_Response=()=>{
     return{
       "attachment":{
         "type":"template",
@@ -168,35 +196,39 @@ const categoryResponse=()=>{
           "template_type": "generic",
           "elements":[
             {
-              "title": "Shirts",
+              "title": "Beverages",
+              "subtitle":"Fresho",
               "buttons":[{
                   "type":"postback",
                   "title":"View",
-                  "payload":"SHIRTS"
+                  "payload":"BEVERAGES"
                 }]
             },
             {
-                "title": "Pants",
+                "title": "Dry Fruits & Nuts",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
                     "title":"View",
-                    "payload":"PANTS"
+                    "payload":"DRY_FRUIT_NUTS"
                   }]
             },
             {
-                "title": "T-Shirts",
+                "title": "Oils",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
                     "title":"View",
-                    "payload":"TSHIRTS"
+                    "payload":"OILS"
                   }]
             },
             {
-                "title": "Sports Wear",
+                "title": "Pooja Items",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
                     "title":"View",
-                    "payload":"SPORTS"
+                    "payload":"POOJA_ITEMS"
                   }]
             }
         
@@ -209,7 +241,7 @@ const categoryResponse=()=>{
 
 
 
-  const productResponse_Men=()=>{
+  const grainsItems_Response=()=>{
     return{
       "attachment":{
         "type":"template",
@@ -217,8 +249,8 @@ const categoryResponse=()=>{
           "template_type": "generic",
           "elements":[
             {
-              "title": "U.S Polo Assn",
-              "subtitle":"Checked Shirt with patch pocket",
+              "title": "Pulses",
+              "subtitle":"Fresho",
               "buttons":[{
                   "type":"postback",
                   "title":"Buy",
@@ -226,38 +258,62 @@ const categoryResponse=()=>{
                 }]
             },
             {
-                "title": "PETER ENGLAND",
-                "subtitle":"Solid Comfort Fit Shirt",
+                "title": "Rice",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
                     "title":"Buy",
                     "payload":"BUY"
                   }]
+            }   
+        ]
+           
+         }
+      }
+    }
+  };
+
+  const spicesItems_Response=()=>{
+    return{
+      "attachment":{
+        "type":"template",
+         "payload":{
+          "template_type": "generic",
+          "elements":[
+            {
+              "title": "Ground Spices",
+              "subtitle":"Fresho",
+              "buttons":[{
+                  "type":"postback",
+                  "title":"Buy",
+                  "payload":"Buy"
+                }]
             },
             {
-                "title": "ARMANI EXCHANGE",
-                "subtitle":"Slim Fit Poplin Shirt",
+                "title": "Masala Spices",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Buy",
+                    "title":"BUY",
                     "payload":"BUY"
                   }]
             },
             {
-                "title": "TOMMY HILFIGER",
-                "subtitle":"Slim Fit Shirt",
+                "title": "Herbs",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Buy",
-                    "payload":"BUY"
+                    "title":"View",
+                    "payload":"HERBS"
                   }]
             },
             {
-                "title": "Go Back",
+                "title": "Whole Spices",
+                "subtitle":"Fresho",
                 "buttons":[{
                     "type":"postback",
-                    "title":"Go Back",
-                    "payload":"BACK_TO_MAIN"
+                    "title":"View",
+                    "payload":"WHOLE_SPICES"
                   }]
             }
         
@@ -266,12 +322,12 @@ const categoryResponse=()=>{
          }
       }
     }
-  }
+  };
 
 
 
 const goBackMenu=(sender_psid)=>{
-    sendCategory(sender_psid);
+    mainCategory_Response(sender_psid);
 }
 
 const callSendAPI=(sender_psid, response)=> {
@@ -303,9 +359,10 @@ const callSendAPI=(sender_psid, response)=> {
 module.exports={
     sendWelcomeMessage:sendWelcomeMessage,
     getFacebookUserName:getFacebookUserName,
-    sendCategory:sendCategory,
-    sendSubCategory:sendSubCategory,
-    sendShirtsMen:sendShirtsMen,
+    mainCategory_Response:mainCategory_Response,
+    sendGroceryList:sendGroceryList,
+    sendGrainsList:sendGrainsList,
+    sendSpicesList:sendSpicesList,
     goBackMenu:goBackMenu,
     callSendAPI:callSendAPI
 }

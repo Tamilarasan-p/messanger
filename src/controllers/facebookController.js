@@ -68,9 +68,9 @@ const postMethodWebhook=(req,res)=>{
         // Gets the message. entry.messaging is an array, but 
         // will only ever contain one message, so we get i   ndex 0
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
+        //console.log(webhook_event);
         let sender_psid=webhook_event.sender.id;
-        console.log("User PSID:" +sender_psid);
+        //console.log("User PSID:" +sender_psid);
 
 
         //check if the event is message or postback and redirect it
@@ -99,7 +99,7 @@ const postMethodWebhook=(req,res)=>{
 
 const getMethodWebhook=(req,res)=>{
     let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
-    console.log(VERIFY_TOKEN);
+    //console.log(VERIFY_TOKEN);
   // Parse the query params
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -130,7 +130,8 @@ const handleMessage= async (sender_psid, received_message) => {
     if(received_message.text){
         let user=await chatBotServices.getFacebookUserName(sender_psid);
         let welcomeNote=dataConfig.messages.welcomeMessage
-        response_message=`Welcome ${user},  ${welcomeNote}`;
+        console.log(user);
+        response_message=`Welcome ${user}  ${welcomeNote}`;
     }
 
     chatBotServices.sendWelcomeMessage(sender_psid,response_message);
@@ -142,20 +143,20 @@ const handlePostback= async (sender_psid, received_postback) =>{
   switch(payload){
 
     case"CATEGORY":
-     await chatBotServices.sendCategory(sender_psid);
+     await chatBotServices.mainCategory_Response(sender_psid);
       break;
 
-    case "MEN":
-      await chatBotServices.sendSubCategory(sender_psid);
+    case "GROCERY":
+      await chatBotServices.sendGroceryList(sender_psid);
        break;
-    case "WOMEN":
-      await chatBotServices.sendSubCategory(sender_psid);
+    case "GRAINS":
+      await chatBotServices.sendGrainsList(sender_psid);
        break;
-    case "SHIRTS":
-      await chatBotServices.sendShirtsMen(sender_psid);
+    case "SPICES":
+      await chatBotServices.sendSpicesList(sender_psid);
       break;
     case "BUY":
-      await chatBotServices.sendShirtsMen(sender_psid);
+      //await chatBotServices.sendShirtsMen(sender_psid);
       break;
     case "BACK_TO_MAIN":
       await chatBotServices.goBackMenu(sender_psid);
