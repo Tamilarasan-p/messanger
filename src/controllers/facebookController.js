@@ -1,10 +1,60 @@
 const dotenv=require('dotenv');
 dotenv.config({ path: __dirname + `/.env` });
-const fetch= require('node-fetch');
+const dataConfig= require('../config/config');
 const request= require('request');
 const URLparams=require('url');
+const { response } = require('express');
 
 const param=new URLparams.URLSearchParams();
+
+
+const getStartedButton=(req,res)=>{
+  let data={
+    "get_started":{
+        "payload":"GET_STARTED"
+      },
+      "persistent_menu": [
+        {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+                {
+                    "type": "postback",
+                    "title": "Talk to an agent",
+                    "payload": "CARE_HELP"
+                },
+                {
+                    "type": "postback",
+                    "title": "Outfit suggestions",
+                    "payload": "CURATION"
+                },
+                {
+                    "type": "web_url",
+                    "title": "Shop now",
+                    "url": "https://www.originalcoastclothing.com/",
+                    "webview_height_ratio": "full"
+                }
+            ]
+        }
+    ],
+    "whitelisted_domains":[
+        "https://bothub-marketing.herokuapp.com",
+    ]   
+  };
+  
+  request({
+    "uri": "https://graph.facebook.com/v6.0/me/messenger_profile",
+    "qs": { "access_token": process.env.FB_PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": data
+  }, (err, res, body) => {
+    if (!err) {
+       res.status(200).json({"message":"success"});
+    } else {
+      res.status(500).json({"message":"something went wrong"})
+    }
+  }); 
+}
 
 const postMethodWebhook=(req,res)=>{
     let body = req.body;
@@ -88,8 +138,49 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  let payload=received_postback.payload;
 
+  if(payload==="GET_STARTED"){
+    response={ "text": dataConfig.messages.welcomeMessage}
+  }
+  
+
+
+  //calling API send function
+  callSendAPI(sender_psid,response);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
@@ -118,6 +209,7 @@ function callSendAPI(sender_psid, response) {
 }
 
 module.exports={
+    getStartedButton:getStartedButton,
     postWebhook:postMethodWebhook,
     getWebhook:getMethodWebhook
 }

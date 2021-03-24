@@ -12,6 +12,7 @@ function isLoggedIn(req,res,next){
 }
 
     router.get("/", homeController.basePage);
+    router.get('/signin',homeController.signin)
     router.get('/webhook',botController.getWebhook);
     router.post('/webhook',botController.postWebhook);
     router.get('/home',isLoggedIn,homeController.home);

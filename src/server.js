@@ -30,6 +30,7 @@ app.use(passport.session());
 app.use('/',initWebRoutes);
 
 const fbAuthController=require('./controllers/facebookAuthController');
+const fbBotController=require('./controllers/facebookController');
 //authenticate
 app.get('/auth/facebook',passport.authenticate('facebook',{scope:['pages_show_list','pages_messaging']}));
 app.get('/auth/facebook/callback',passport.authenticate('facebook',{
@@ -37,6 +38,7 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
     failureRedirect:'/error'
 }));
 
+app.post('/setUpButton',fbBotController.getStartedButton);
 app.get('/auth/logout', function(req, res) {
     req.logout();
     res.redirect('/');
