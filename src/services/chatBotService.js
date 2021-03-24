@@ -92,6 +92,39 @@ const sendCategory=(sender_psid)=>{
 
 
 
+//sending category list
+
+const sendSubCategory=(sender_psid)=>{
+    return new Promise( async(resolve,reject)=>{
+
+            try{
+
+                let subcategory_response=subCategoryResponse();
+                await callSendAPI(sender_psid,subcategory_response)
+                resolve("done");
+            }catch(e){
+                reject(e);
+            }
+
+    });
+};
+
+const sendShirtsMen=(sender_psid)=>{
+    return new Promise( async(resolve,reject)=>{
+
+            try{
+
+                let subcategory_response=productResponse_Men();
+                await callSendAPI(sender_psid,subcategory_response)
+                resolve("done");
+            }catch(e){
+                reject(e);
+            }
+
+    });
+};
+
+
 
 //create category response
 
@@ -128,6 +161,106 @@ const categoryResponse=()=>{
   
   
 
+  const subCategoryResponse=()=>{
+    return{
+      "attachment":{
+        "type":"template",
+         "payload":{
+          "template_type": "generic",
+          "elements":[
+            {
+              "title": "Shirts",
+              "buttons":[{
+                  "type":"postback",
+                  "title":"View",
+                  "payload":"SHIRTS"
+                }]
+            },
+            {
+                "title": "Pants",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"View",
+                    "payload":"PANTS"
+                  }]
+            },
+            {
+                "title": "T-Shirts",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"View",
+                    "payload":"TSHIRTS"
+                  }]
+            },
+            {
+                "title": "Sports Wear",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"View",
+                    "payload":"SPORTS"
+                  }]
+            }
+        
+        ]
+           
+         }
+      }
+    }
+  };
+
+
+
+  const productResponse_Men=()=>{
+    return{
+      "attachment":{
+        "type":"template",
+         "payload":{
+          "template_type": "generic",
+          "elements":[
+            {
+              "title": "U.S Polo Assn",
+              "subtitle":"Checked Shirt with patch pocket",
+              "buttons":[{
+                  "type":"postback",
+                  "title":"Buy",
+                  "payload":"BUY"
+                }]
+            },
+            {
+                "title": "PETER ENGLAND",
+                "subtitle":"Solid Comfort Fit Shirt",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Buy",
+                    "payload":"BUY"
+                  }]
+            },
+            {
+                "title": "ARMANI EXCHANGE",
+                "subtitle":"Slim Fit Poplin Shirt",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Buy",
+                    "payload":"BUY"
+                  }]
+            },
+            {
+                "title": "TOMMY HILFIGER",
+                "subtitle":"Slim Fit Shirt",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Buy",
+                    "payload":"BUY"
+                  }]
+            }
+        
+        ]
+           
+         }
+      }
+    }
+  }
+
 
 const callSendAPI=(sender_psid, response)=> {
     console.log(response);
@@ -159,5 +292,7 @@ module.exports={
     sendWelcomeMessage:sendWelcomeMessage,
     getFacebookUserName:getFacebookUserName,
     sendCategory:sendCategory,
+    sendSubCategory:sendSubCategory,
+    sendShirtsMen:sendShirtsMen,
     callSendAPI:callSendAPI
 }

@@ -142,15 +142,21 @@ const handlePostback= async (sender_psid, received_postback) =>{
   let response_message;
   switch(payload){
     case"CATEGORY":
-      chatBotServices.sendCategory(sender_psid);
+     await chatBotServices.sendCategory(sender_psid);
       break;
 
-    case "SUB_CATEGORY":
+    case "MEN":
+      await chatBotServices.sendSubCategory(sender_psid);
        break;
-
-    case "PRODUCT":
+    case "WOMEN":
+      await chatBotServices.sendSubCategory(sender_psid);
        break;
-
+    case "SHIRTS":
+      await chatBotServices.sendShirtsMen(sender_psid);
+      break;
+    case "BUY":
+      await chatBotServices.sendShirtsMen(sender_psid);
+      break;
   }
   
 };
