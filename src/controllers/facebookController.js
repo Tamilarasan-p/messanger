@@ -186,13 +186,13 @@ const askCategory=()=>{
               "buttons":[
                   {
                       "type":"postback",
-                      "title":"Cats",
-                      "payload":"CAT_PICS"
+                      "title":"Men",
+                      "payload":"men"
                   },
                   {
                       "type":"postback",
-                      "title":"Dogs",
-                      "payload":"DOG_PICS"
+                      "title":"Women",
+                      "payload":"women"
                   }
               ]
           }
