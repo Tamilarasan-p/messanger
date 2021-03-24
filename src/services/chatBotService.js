@@ -32,11 +32,11 @@ let getFacebookUserName=(sender_id)=>{
 
 
 //send welcome message
-const sendWelcomeMessage = (sender_psid,response)=>{
+const sendWelcomeMessage = (sender_psid,responseText)=>{
     return new Promise(async (resolve,reject)=>{
 
             try{
-                await callSendAPI(sender_psid, response);
+                
 
                 //creating additional welcome message
 
@@ -46,7 +46,7 @@ const sendWelcomeMessage = (sender_psid,response)=>{
                         "payload": {
                           "template_type": "generic",
                           "elements": [{
-                            "title": "Welcome to Shoppers Store",
+                            "title": `${responseText}, Welcome to our Store`,
                             "subtitle": "Lets get started",
                             "image_url": "",
                             "buttons": [

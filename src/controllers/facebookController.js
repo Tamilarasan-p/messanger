@@ -131,7 +131,7 @@ const handleMessage= async (sender_psid, received_message) => {
         let username=await chatBotServices.getFacebookUserName(sender_psid);
         let welcomeNote=dataConfig.messages.welcomeMessage
         console.log(username);
-        response_message={"text":`Welcome ${username},  ${welcomeNote}`};
+        response_message=`Welcome ${username},  ${welcomeNote}`;
     }
 
     chatBotServices.sendWelcomeMessage(sender_psid,response_message);
