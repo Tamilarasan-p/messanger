@@ -354,7 +354,7 @@ const mainCategory_Response=()=>{
 
 
 const goBackMenu=(sender_psid)=>{
-    mainCategory_Response(sender_psid);
+    sendMainCategory(sender_psid);
 }
 
 const callSendAPI=(sender_psid, response)=> {
@@ -392,4 +392,4 @@ module.exports={
     sendSpicesList:sendSpicesList,
     goBackMenu:goBackMenu,
     callSendAPI:callSendAPI
-}
+};
