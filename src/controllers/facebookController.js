@@ -129,7 +129,7 @@ function handleMessage(sender_psid, received_message) {
     let response_message;
     if(received_message.text){
         response_message={
-            "text":`You have sent: "${received_message.text}".`
+            "text":dataConfig.messages.welcomeMessage
         }
     }
 
