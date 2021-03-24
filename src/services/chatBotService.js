@@ -21,7 +21,7 @@ let getFacebookUserName=(sender_id)=>{
             resolve(username);
       } 
       else {
-        reject("Unable to send message:" + err);
+        reject("Unable to fetch details");
       }
 
     }); 
@@ -31,6 +31,76 @@ let getFacebookUserName=(sender_id)=>{
 
 
 
+//send welcome message
+const sendWelcomeMessage=(sender_psid,response)=>{
+    return Promise((resolve,reject)=>{
+
+            try{
+                await callSendAPI(sender_psid,response);
+
+                //creating additional welcome message
+
+                let welcomeResponse={
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                          "template_type": "generic",
+                          "elements": [{
+                            "title": "Welcome to Shoppers Store",
+                            "subtitle": "Lets get started",
+                            "image_url": "",
+                            "buttons": [
+                              {
+                                "type": "postback",
+                                "title": "Show Categories",
+                                "payload": "CATEGORY",
+                              }
+                            ],
+                          }]
+                        }
+                      }
+                }
+                     
+                await callSendAPI(sender_psid,welcomeResponse);
+
+                resolve("done");
+
+            }catch(e){
+                reject(e);
+            }
+
+    });
+};
+
+
+const callSendAPI=(sender_psid, response)=> {
+    console.log(response);
+      // Construct the message body
+    let request_body = {
+      "recipient": {
+        "id": sender_psid
+      },
+      "message": response
+    }
+  
+    // Send the HTTP request to the Messenger Platform
+        request({
+        "uri": "https://graph.facebook.com/v6.0/me/messages",
+        "qs": { "access_token": process.env.FB_PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+        }, (err, res, body) => {
+        if (!err) {
+            console.log('message sent!')
+        } else {
+            console.error("Unable to send message:" + err);
+        }
+        }); 
+  } 
+
+
 module.exports={
-    getFacebookUserName:getFacebookUserName
+    sendWelcomeMessage:sendWelcomeMessage,
+    getFacebookUserName:getFacebookUserName,
+    callSendAPI:callSendAPI
 }

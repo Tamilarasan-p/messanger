@@ -130,23 +130,28 @@ const handleMessage= async (sender_psid, received_message) => {
     if(received_message.text){
         let user=await chatBotServices.getFacebookUserName(sender_psid);
         let welcomeNote=dataConfig.messages.welcomeMessage
-        response_message=makeResponse(`Hi ${user} ${welcomeNote}`);
+        response_message=makeResponse(`Welcome ${user},  ${welcomeNote}`);
     }
 
-    callSendAPI(sender_psid,response_message);
+    chatBotServices.sendWelcomeMessage(sender_psid,response_message);
 };
 
 // Handles messaging_postbacks events
 const handlePostback= async (sender_psid, received_postback) =>{
   let payload=received_postback.payload;
   let response_message;
-  if(payload==="GET_STARTED"){
-    
-    response_message=askCategory();
+  switch(payload){
+    case"CATEGORY":
+      break;
+
+    case "SUB_CATEGORY":
+       break;
+
+    case "PRODUCT":
+       break;
+
   }
   
-  //calling API send function
-  callSendAPI(sender_psid,response_message);
 };
 
 
@@ -229,30 +234,7 @@ const askCategory=()=>{
 
 
 // Sends response messages via the Send API
-function callSendAPI(sender_psid, response) {
-  console.log(response);
-    // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
-  }
 
-  // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v6.0/me/messages",
-    "qs": { "access_token": process.env.FB_PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
-}
 
 module.exports={
     getStartedButton:getStartedButton,
