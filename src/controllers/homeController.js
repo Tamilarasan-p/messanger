@@ -5,7 +5,7 @@ const FB_PAGE_ACCESS_TOKEN=process.env.FB_PAGE_ACCESS_TOKEN;
 
 
 const basePage=(req,res)=>{
-   return res.render('index.ejs')
+   return res.render('login.ejs')
 };
 
 const signin=(req,res)=>{
