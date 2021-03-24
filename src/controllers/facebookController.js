@@ -178,35 +178,25 @@ const makeResponse=(text)=>{
 
 const askCategory=()=>{
   return {
-    "attachment":{
-        "type":"template",
-        "payload":{
-            "template_type":"button",
-            "text": "Select category",
-            "buttons":[
-                {
-                    "type":"postback",
-                    "title":"Men",
-                    "payload":"men"
-                },
-                {
-                    "type":"postback",
-                    "title":"Women",
-                    "payload":"women"
-                },
-                {
-                  "type":"postback",
-                  "title":"Boys",
-                  "payload":"boys"
-                },
-                {
-                "type":"postback",
-                "title":"Girls",
-                "payload":"girls"
-                }
-            ]
-        }
-    }
+      "attachment":{
+          "type":"template",
+          "payload":{
+              "template_type":"button",
+              "text": "Select Category",
+              "buttons":[
+                  {
+                      "type":"postback",
+                      "title":"Cats",
+                      "payload":"CAT_PICS"
+                  },
+                  {
+                      "type":"postback",
+                      "title":"Dogs",
+                      "payload":"DOG_PICS"
+                  }
+              ]
+          }
+      }
   }
 }
 
