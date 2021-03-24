@@ -139,8 +139,8 @@ const handleMessage= async (sender_psid, received_message) => {
 // Handles messaging_postbacks events
 const handlePostback= async (sender_psid, received_postback) =>{
   let payload=received_postback.payload;
-  let response_message;
   switch(payload){
+
     case"CATEGORY":
      await chatBotServices.sendCategory(sender_psid);
       break;
@@ -156,6 +156,11 @@ const handlePostback= async (sender_psid, received_postback) =>{
       break;
     case "BUY":
       await chatBotServices.sendShirtsMen(sender_psid);
+      break;
+    case "BACK_TO_MAIN":
+      await chatBotServices.goBackMenu(sender_psid);
+      break;
+    default:
       break;
   }
   

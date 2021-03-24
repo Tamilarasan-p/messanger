@@ -252,6 +252,13 @@ const categoryResponse=()=>{
                     "title":"Buy",
                     "payload":"BUY"
                   }]
+            },
+            {
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"BACK_TO_MAIN"
+                  }]
             }
         
         ]
@@ -261,6 +268,11 @@ const categoryResponse=()=>{
     }
   }
 
+
+
+const goBackMenu=(sender_psid)=>{
+    sendCategory(sender_psid);
+}
 
 const callSendAPI=(sender_psid, response)=> {
     console.log(response);
@@ -294,5 +306,6 @@ module.exports={
     sendCategory:sendCategory,
     sendSubCategory:sendSubCategory,
     sendShirtsMen:sendShirtsMen,
+    goBackMenu:goBackMenu,
     callSendAPI:callSendAPI
 }
