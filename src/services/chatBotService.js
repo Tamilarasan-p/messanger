@@ -2,6 +2,8 @@ const dotenv=require('dotenv');
 dotenv.config({ path: __dirname + `/.env` });
 const dataConfig= require('../config/config');
 const request= require('request');
+const FB_PAGE_ACCESS_TOKEN=process.env.FB_PAGE_ACCESS_TOKEN;
+
 
 let getFacebookUserName=(sender_id)=>{
 
