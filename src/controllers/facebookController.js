@@ -125,7 +125,7 @@ const getMethodWebhook=(req,res)=>{
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+const handleMessage= async (sender_psid, received_message) => {
     let response_message;
     if(received_message.text){
         let user=await chatBotServices.getFacebookUserName(sender_psid);
@@ -134,7 +134,7 @@ function handleMessage(sender_psid, received_message) {
     }
 
     callSendAPI(sender_psid,response_message);
-}
+};
 
 // Handles messaging_postbacks events
 const handlePostback= async (sender_psid, received_postback) =>{
@@ -147,7 +147,7 @@ const handlePostback= async (sender_psid, received_postback) =>{
   
   //calling API send function
   callSendAPI(sender_psid,response_message);
-}
+};
 
 
 
