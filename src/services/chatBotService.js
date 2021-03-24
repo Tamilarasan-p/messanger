@@ -3,7 +3,7 @@ dotenv.config({ path: __dirname + `/.env` });
 const dataConfig= require('../config/config');
 const request= require('request');
 
-const getFacebookUserName=(sender_id)=>{
+let getFacebookUserName=(sender_id)=>{
 
     return new Promise(  (resolve,reject)=>{
 
@@ -22,7 +22,7 @@ const getFacebookUserName=(sender_id)=>{
       }
     }); 
 
-});
+}
 
 
 
