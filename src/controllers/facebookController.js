@@ -128,9 +128,7 @@ const getMethodWebhook=(req,res)=>{
 function handleMessage(sender_psid, received_message) {
     let response_message;
     if(received_message.text){
-        response_message={
-            "text":dataConfig.messages.welcomeMessage
-        }
+        response_message=makeResponse(dataConfig.messages.welcomeMessage);
     }
 
     callSendAPI(sender_psid,response_message);
@@ -141,7 +139,7 @@ function handlePostback(sender_psid, received_postback) {
   let payload=received_postback.payload;
 
   if(payload==="GET_STARTED"){
-    response={ "text": dataConfig.messages.welcomeMessage}
+    response=askCategory();
   }
   
 
@@ -153,8 +151,65 @@ function handlePostback(sender_psid, received_postback) {
 
 
 
+//get started template
+const makeResponse=(text)=>{
+  return{
+    "attachment":{
+      "type":"template",
+       "payload":{
+        "template_type": "generic",
+        "elements":[
+          {
+            "title": text,
+            "subtitle": "Tap to Get Started.",
+            "buttons":[{
+                "type":"postback",
+                "title":"GET_STARTED",
+                "payload":"GET_STARTED"
+              }]
+          }]
+         
+       }
+    }
+  }
+}
 
 
+//make category response
+
+const askCategory=()=>{
+  return {
+    "attachment":{
+        "type":"template",
+        "payload":{
+            "template_type":"button",
+            "text": "Select category",
+            "buttons":[
+                {
+                    "type":"postback",
+                    "title":"Men",
+                    "payload":"men"
+                },
+                {
+                    "type":"postback",
+                    "title":"Women",
+                    "payload":"women"
+                },
+                {
+                  "type":"postback",
+                  "title":"Boys",
+                  "payload":"boys"
+                },
+                {
+                "type":"postback",
+                "title":"Girls",
+                "payload":"girls"
+                }
+            ]
+        }
+    }
+  }
+}
 
 
 
