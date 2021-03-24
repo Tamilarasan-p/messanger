@@ -359,7 +359,7 @@ const callSendAPI=(sender_psid, response)=> {
 module.exports={
     sendWelcomeMessage:sendWelcomeMessage,
     getFacebookUserName:getFacebookUserName,
-    mainCategory_Response:mainCategory_Response,
+    sendMainCategory:sendMainCategory,
     sendGroceryList:sendGroceryList,
     sendGrainsList:sendGrainsList,
     sendSpicesList:sendSpicesList,

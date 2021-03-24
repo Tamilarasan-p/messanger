@@ -143,7 +143,7 @@ const handlePostback= async (sender_psid, received_postback) =>{
   switch(payload){
 
     case"CATEGORY":
-     await chatBotServices.mainCategory_Response(sender_psid);
+     await chatBotServices.sendMainCategory(sender_psid);
       break;
 
     case "GROCERY":
