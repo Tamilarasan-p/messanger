@@ -114,8 +114,8 @@ const sendShirtsMen=(sender_psid)=>{
 
             try{
 
-                let subcategory_response=productResponse_Men();
-                await callSendAPI(sender_psid,subcategory_response)
+                let product_response=productResponse_Men();
+                await callSendAPI(sender_psid,product_response)
                 resolve("done");
             }catch(e){
                 reject(e);
