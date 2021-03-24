@@ -253,6 +253,7 @@ const categoryResponse=()=>{
                   }]
             },
             {
+                "title": "Go Back",
                 "buttons":[{
                     "type":"postback",
                     "title":"Go Back",
