@@ -3,10 +3,10 @@ dotenv.config({ path: __dirname + `/.env` });
 const dataConfig= require('../config/config');
 const request= require('request');
 const URLparams=require('url');
-const { response } = require('express');
+const chatBotServices=require('../services/chatBotService')
 
 const param=new URLparams.URLSearchParams();
-
+const FB_PAGE_ACCESS_TOKEN=process.env.FB_PAGE_ACCESS_TOKEN;
 
 const getStartedButton=(req,res)=>{
   let data={
@@ -128,18 +128,20 @@ const getMethodWebhook=(req,res)=>{
 function handleMessage(sender_psid, received_message) {
     let response_message;
     if(received_message.text){
-        response_message=makeResponse(dataConfig.messages.welcomeMessage);
+        let user=await chatBotServices.getFacebookUserName(sender_psid);
+        let welcomeNote=dataConfig.messages.welcomeMessage
+        response_message=makeResponse(`Hi ${user} ${welcomeNote}`);
     }
 
     callSendAPI(sender_psid,response_message);
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+const handlePostback= async (sender_psid, received_postback) =>{
   let payload=received_postback.payload;
   let response_message;
   if(payload==="GET_STARTED"){
-    console.log("Triggered");
+    
     response_message=askCategory();
   }
   
