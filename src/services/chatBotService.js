@@ -120,7 +120,6 @@ const sendShirtsMen=(sender_psid)=>{
             }catch(e){
                 reject(e);
             }
-
     });
 };
 
