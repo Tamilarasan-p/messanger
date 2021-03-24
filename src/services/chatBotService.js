@@ -230,6 +230,15 @@ const mainCategory_Response=()=>{
                     "title":"View",
                     "payload":"POOJA_ITEMS"
                   }]
+            },
+            {
+                "title": "Go Back to main list",
+                "subtitle":"Fresho",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"BACK_TO_MAIN"
+                  }]
             }
         
         ]
@@ -265,7 +274,16 @@ const mainCategory_Response=()=>{
                     "title":"Buy",
                     "payload":"BUY"
                   }]
-            }   
+            },
+            {
+                "title": "Go Back to main list",
+                "subtitle":"Fresho",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"BACK_TO_MAIN"
+                  }]
+            } 
         ]
            
          }
@@ -314,6 +332,15 @@ const mainCategory_Response=()=>{
                     "type":"postback",
                     "title":"View",
                     "payload":"WHOLE_SPICES"
+                  }]
+            },
+            {
+                "title": "Go Back to main List",
+                "subtitle":"Fresho",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"BACK_TO_MAIN"
                   }]
             }
         
