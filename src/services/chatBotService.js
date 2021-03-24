@@ -32,8 +32,8 @@ let getFacebookUserName=(sender_id)=>{
 
 
 //send welcome message
-const sendWelcomeMessage =  async(sender_psid,response)=>{
-    return Promise((resolve,reject)=>{
+const sendWelcomeMessage = (sender_psid,response)=>{
+    return new Promise(async (resolve,reject)=>{
 
             try{
                 await callSendAPI(sender_psid, response);
@@ -82,7 +82,7 @@ const sendCategory=(sender_psid)=>{
 
                 let category_response=categoryResponse();
                 await callSendAPI(sender_psid,category_response)
-
+                resolve("done");
             }catch(e){
                 reject(e);
             }
