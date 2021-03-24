@@ -32,11 +32,11 @@ let getFacebookUserName=(sender_id)=>{
 
 
 //send welcome message
-const sendWelcomeMessage=(sender_psid,response)=>{
-    return Promise((resolve,reject)=>{
+const sendWelcomeMessage=  (sender_psid,response)=>{
+    return Promise(async(resolve,reject)=>{
 
             try{
-                await callSendAPI(sender_psid,response);
+                await callSendAPI(sender_psid, response);
 
                 //creating additional welcome message
 
@@ -73,6 +73,62 @@ const sendWelcomeMessage=(sender_psid,response)=>{
 };
 
 
+//sending category list
+
+const sendCategory=(sender_psid)=>{
+    return new Promise( async(resolve,reject)=>{
+
+            try{
+
+                let category_response=categoryResponse();
+                await callSendAPI(sender_psid,category_response)
+
+            }catch(e){
+                reject(e);
+            }
+
+    });
+};
+
+
+
+
+//create category response
+
+const categoryResponse=()=>{
+    return{
+      "attachment":{
+        "type":"template",
+         "payload":{
+          "template_type": "generic",
+          "elements":[
+            {
+              "title": "Men",
+              "buttons":[{
+                  "type":"postback",
+                  "title":"Men",
+                  "payload":"MEN"
+                }]
+            },
+            {
+                "title": "Women",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Women",
+                    "payload":"WOMEN"
+                  }]
+              }
+        
+        ]
+           
+         }
+      }
+    }
+  }
+  
+  
+
+
 const callSendAPI=(sender_psid, response)=> {
     console.log(response);
       // Construct the message body
@@ -102,5 +158,6 @@ const callSendAPI=(sender_psid, response)=> {
 module.exports={
     sendWelcomeMessage:sendWelcomeMessage,
     getFacebookUserName:getFacebookUserName,
+    sendCategory:sendCategory,
     callSendAPI:callSendAPI
 }

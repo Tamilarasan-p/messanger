@@ -142,6 +142,7 @@ const handlePostback= async (sender_psid, received_postback) =>{
   let response_message;
   switch(payload){
     case"CATEGORY":
+      chatBotServices.sendCategory(sender_psid);
       break;
 
     case "SUB_CATEGORY":
@@ -158,54 +159,7 @@ const handlePostback= async (sender_psid, received_postback) =>{
 
 
 //get started template
-const makeResponse=(text)=>{
-  return{
-    "attachment":{
-      "type":"template",
-       "payload":{
-        "template_type": "generic",
-        "elements":[
-          {
-            "title": text,
-            "subtitle": "Tap to Get Started.",
-            "buttons":[{
-                "type":"postback",
-                "title":"GET STARTED",
-                "payload":"GET_STARTED"
-              }]
-          }]
-         
-       }
-    }
-  }
-}
 
-
-//make category response
-
-const askCategory=()=>{
-  return {
-      "attachment":{
-          "type":"template",
-          "payload":{
-              "template_type":"button",
-              "text": "Select Category",
-              "buttons":[
-                  {
-                      "type":"postback",
-                      "title":"Men",
-                      "payload":"men"
-                  },
-                  {
-                      "type":"postback",
-                      "title":"Women",
-                      "payload":"women"
-                  }
-              ]
-          }
-      }
-  }
-}
 
 
 
