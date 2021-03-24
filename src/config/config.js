@@ -1,3 +1,6 @@
+'use strict';
+
+var config = {};
 // Messages
 config.messages = {};
 
