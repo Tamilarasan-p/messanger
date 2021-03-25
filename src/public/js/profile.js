@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#setUpButton').on("click",function(event){
         event.preventDefault();
         $.ajax({
-            url:`https://bothub-marketing.herokuapp.com/setUpButton`,
+            url:`https://bothub-marketing.herokuapp.com/setUpMessenger`,
             method:'POST',
             data:{},
             success:function(data){
@@ -10,7 +10,8 @@ $(document).ready(function(){
                 console.log("success");
             },
             error:function(error){
-                console.log(`Error:${error}`);
+                alert(JSON.parse(error));
+                console.log(JSON.parse(error));
             }
         });
         //ajax end
