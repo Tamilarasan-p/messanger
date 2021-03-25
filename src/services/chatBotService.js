@@ -4,6 +4,11 @@ const dataConfig= require('../config/config');
 const request= require('request');
 const FB_PAGE_ACCESS_TOKEN=process.env.FB_PAGE_ACCESS_TOKEN;
 const BASE_URL=process.env.IMAGE_BASE_URL;
+const PRODUCT_URL=process.env.PRODUCT_BASE_URL;
+
+
+
+
 
 let getFacebookUserName=(sender_id)=>{
 
@@ -109,13 +114,13 @@ const sendGroceryList=(sender_psid)=>{
     });
 };
 
-const sendGrainsList=(sender_psid)=>{
+const sendMakeUpList=(sender_psid)=>{
     return new Promise( async(resolve,reject)=>{
 
             try{
 
-                let grains_response=grainsItems_Response();
-                await callSendAPI(sender_psid,grains_response)
+                let makeup_response=makeUpItems_Response();
+                await callSendAPI(sender_psid,makeup_response)
                 resolve("done");
             }catch(e){
                 reject(e);
@@ -126,13 +131,13 @@ const sendGrainsList=(sender_psid)=>{
 
 //send spices list
 
-const sendSpicesList=(sender_psid)=>{
+const sendPaletteList=(sender_psid)=>{
     return new Promise( async(resolve,reject)=>{
 
             try{
 
-                let spices_response=spicesItems_Response();
-                await callSendAPI(sender_psid,spices_response)
+                let palette_response=palette_Response();
+                await callSendAPI(sender_psid,palette_response)
                 resolve("done");
             }catch(e){
                 reject(e);
@@ -168,7 +173,7 @@ const mainCategory_Response=()=>{
                 "buttons":[{
                     "type":"postback",
                     "title":"View Products",
-                    "payload":"HIGHLIGHTER"
+                    "payload":"NICMAC_PALETTE"
                   }]
             },
             {
@@ -201,155 +206,58 @@ const mainCategory_Response=()=>{
   
   
 
-  const groceryItems_Response=()=>{
+  const makeUpItems_Response=()=>{
     return{
       "attachment":{
         "type":"template",
          "payload":{
-          "template_type": "generic",
+          "template_type": "button",
           "elements":[
             {
-              "title": "Beverages",
-              "subtitle":"Fresho",
+              "title": "Full Bodied Foundation Brush",
+              "subtitle":"$40",
+              "image_url":`${BASE_URL}${dataConfig.data.product1}`,
               "buttons":[{
-                  "type":"postback",
-                  "title":"View",
-                  "payload":"BEVERAGES"
+                "type":"web_url",
+                "url":"https://www.messenger.com/",
+                "title":"Buy",
+                "webview_height_ratio": "full"
                 }]
             },
             {
-                "title": "Dry Fruits & Nuts",
-                "subtitle":"Fresho",
+                "title": "Tapered Powder Brush",
+                "subtitle":"$45",
+                "image_url":`${PRODUCT_URL}${dataConfig.data.product2}`,
                 "buttons":[{
-                    "type":"postback",
-                    "title":"View",
-                    "payload":"DRY_FRUIT_NUTS"
-                  }]
-            },
-            {
-                "title": "Oils",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"View",
-                    "payload":"OILS"
-                  }]
-            },
-            {
-                "title": "Pooja Items",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"View",
-                    "payload":"POOJA_ITEMS"
-                  }]
-            },
-            {
-                "title": "Go Back to main list",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"BACK_TO_MAIN"
-                  }]
-            }
-        
-        ]
-           
-         }
-      }
-    }
-  };
-
-
-
-  const grainsItems_Response=()=>{
-    return{
-      "attachment":{
-        "type":"template",
-         "payload":{
-          "template_type": "generic",
-          "elements":[
-            {
-              "title": "Pulses",
-              "subtitle":"Fresho",
-              "buttons":[{
-                  "type":"postback",
-                  "title":"Buy",
-                  "payload":"BUY"
-                }]
-            },
-            {
-                "title": "Rice",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/makeup-brushes/tapered-powder-brush",
                     "title":"Buy",
-                    "payload":"BUY"
+                    "webview_height_ratio": "full"
+                  }]
+            },
+            {
+                "title": "Tapered Blending Brush",
+                "image_url":`${PRODUCT_URL}${dataConfig.data.product3}`,
+                "buttons":[{
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/makeup-brushes/tapered-eyeshadow-blender",
+                    "title":"Buy",
+                    "webview_height_ratio": "full"
+                  }]
+            },
+            {
+                "title": "Eyeliner Brush",
+                "image_url":`${PRODUCT_URL}${dataConfig.data.product4}`,
+                "buttons":[{
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/makeup-brushes/eyeliner",
+                    "title":"Buy",
+                    "webview_height_ratio": "full"
                   }]
             },
             {
                 "title": "Go Back to main list",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"Go Back",
-                    "payload":"BACK_TO_MAIN"
-                  }]
-            } 
-        ]
-           
-         }
-      }
-    }
-  };
-
-  const spicesItems_Response=()=>{
-    return{
-      "attachment":{
-        "type":"template",
-         "payload":{
-          "template_type": "generic",
-          "elements":[
-            {
-              "title": "Ground Spices",
-              "subtitle":"Fresho",
-              "buttons":[{
-                  "type":"postback",
-                  "title":"Buy",
-                  "payload":"Buy"
-                }]
-            },
-            {
-                "title": "Masala Spices",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"BUY",
-                    "payload":"BUY"
-                  }]
-            },
-            {
-                "title": "Herbs",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"View",
-                    "payload":"HERBS"
-                  }]
-            },
-            {
-                "title": "Whole Spices",
-                "subtitle":"Fresho",
-                "buttons":[{
-                    "type":"postback",
-                    "title":"View",
-                    "payload":"WHOLE_SPICES"
-                  }]
-            },
-            {
-                "title": "Go Back to main List",
-                "subtitle":"Fresho",
+                "subtitle":"Cosmetics",
                 "buttons":[{
                     "type":"postback",
                     "title":"Go Back",
@@ -363,6 +271,78 @@ const mainCategory_Response=()=>{
       }
     }
   };
+
+
+
+  const palette_Response=()=>{
+    return{
+      "attachment":{
+        "type":"template",
+         "payload":{
+          "template_type": "button",
+          "elements":[
+            {
+              "title": "Nic & Mix Palette",
+              "subtitle":"Strawberry Milkshake Price: $40",
+              "image_url":`${BASE_URL}${dataConfig.data.product5}`,
+              "buttons":[{
+                "type":"web_url",
+                "url":"https://www.nicmacbeauty.com/nic-mix-eyeshadow-singles/nic-amp-mix-pressed-eyeshadow-strawberry-milkshake",
+                "title":"Buy",
+                "webview_height_ratio": "full"
+                }]
+            },
+            {
+                "title": "Nic & Mix Pressed Eyeshadow",
+                "subtitle":"Candy Floss, Price: $45",
+                "image_url":`${BASE_URL}${dataConfig.data.product6}`,
+                "buttons":[{
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/nic-mix-eyeshadow-singles/nic-amp-mix-pressed-eyeshadow-candy-floss",
+                    "title":"Buy",
+                    "webview_height_ratio": "full"
+                  }]
+            },
+            {
+                "title": "Nic & Mix Pressed Eyeshadow",
+                "subtitle":"Parma Violet, Price: $19",
+                "image_url":`${BASE_URL}${dataConfig.data.product7}`,
+                "buttons":[{
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/nic-mix-eyeshadow-singles/nic-amp-mix-pressed-eyeshadow-parma-violet",
+                    "title":"Buy",
+                    "webview_height_ratio": "full"
+                  }]
+            },
+            {
+                "title": "Nic & Mix Pressed Eyeshadow",
+                "subtitle":"Cola Bottle,Price: $16",
+                "image_url":`${BASE_URL}${dataConfig.data.product8}`,
+                "buttons":[{
+                    "type":"web_url",
+                    "url":"https://www.nicmacbeauty.com/nic-mix-eyeshadow-singles/nic-amp-mix-pressed-eyeshadow-cola-bottle",
+                    "title":"Buy",
+                    "webview_height_ratio": "full"
+                  }]
+            },
+            {
+                "title": "Go Back to main list",
+                "subtitle":"Cosmetics",
+                "buttons":[{
+                    "type":"postback",
+                    "title":"Go Back",
+                    "payload":"BACK_TO_MAIN"
+                  }]
+            }
+        
+        ]
+           
+         }
+      }
+    }
+  };
+
+  
 
 
 
@@ -400,9 +380,8 @@ module.exports={
     sendWelcomeMessage:sendWelcomeMessage,
     getFacebookUserName:getFacebookUserName,
     sendMainCategory:sendMainCategory,
-    sendGroceryList:sendGroceryList,
-    sendGrainsList:sendGrainsList,
-    sendSpicesList:sendSpicesList,
+    sendMakeUpList:sendMakeUpList,
+    sendPaletteList:sendPaletteList,
     goBackMenu:goBackMenu,
     callSendAPI:callSendAPI
 };

@@ -156,19 +156,12 @@ const handlePostback= async (sender_psid, received_postback) =>{
      await chatBotServices.sendMainCategory(sender_psid);
       break;
 
-    case "GROCERY":
-      await chatBotServices.sendGroceryList(sender_psid);
+    case "BRUSHES":
+      await chatBotServices.sendMakeUpList(sender_psid);
       break;
 
-    case "GRAINS":
-      await chatBotServices.sendGrainsList(sender_psid);
-      break;
-
-    case "SPICES":
-      await chatBotServices.sendSpicesList(sender_psid);
-      break;
-    case "BUY":
-      //await chatBotServices.sendShirtsMen(sender_psid);
+    case "NICMAC_PALETTE":
+      await chatBotServices.sendPaletteList(sender_psid);
       break;
     case "BACK_TO_MAIN":
       await chatBotServices.goBackMenu(sender_psid);
