@@ -211,7 +211,7 @@ const mainCategory_Response=()=>{
       "attachment":{
         "type":"template",
          "payload":{
-          "template_type": "button",
+          "template_type": "generic",
           "elements":[
             {
               "title": "Full Bodied Foundation Brush",
@@ -279,7 +279,7 @@ const mainCategory_Response=()=>{
       "attachment":{
         "type":"template",
          "payload":{
-          "template_type": "button",
+          "template_type": "generic",
           "elements":[
             {
               "title": "Nic & Mix Palette",
