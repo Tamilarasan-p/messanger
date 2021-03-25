@@ -13,7 +13,7 @@ function isLoggedIn(req,res,next){
 
     router.get("/", homeController.basePage);
     router.get('/signin',homeController.signin);
-    router.post('/setUpButton',homeController.setupProfile);
+    router.post('/setUpMessenger',homeController.setUpMessengerProfile);
     router.get('/webhook',botController.getWebhook);
     router.post('/webhook',botController.postWebhook);
     router.get('/home',isLoggedIn,homeController.home);
