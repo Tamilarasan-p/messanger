@@ -139,8 +139,18 @@ const handleMessage= async (sender_psid, received_message) => {
 
 // Handles messaging_postbacks events
 const handlePostback= async (sender_psid, received_postback) =>{
+        
+
   let payload=received_postback.payload;
   switch(payload){
+   
+    case"GET_STARTED":
+      let username=await chatBotServices.getFacebookUserName(sender_psid);
+      let welcomeNote=dataConfig.messages.welcomeMessage
+      //console.log(username);
+      response_message=`Welcome ${username},  ${welcomeNote}`;
+      await chatBotServices.sendWelcomeMessage(sender_psid,response_message);
+      break;
 
     case"CATEGORY":
      await chatBotServices.sendMainCategory(sender_psid);
@@ -148,10 +158,12 @@ const handlePostback= async (sender_psid, received_postback) =>{
 
     case "GROCERY":
       await chatBotServices.sendGroceryList(sender_psid);
-       break;
+      break;
+
     case "GRAINS":
       await chatBotServices.sendGrainsList(sender_psid);
-       break;
+      break;
+
     case "SPICES":
       await chatBotServices.sendSpicesList(sender_psid);
       break;
