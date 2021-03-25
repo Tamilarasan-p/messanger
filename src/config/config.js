@@ -21,4 +21,12 @@ config.messages.emptyTopLevelResponse = "Sorry, something went wrong. Please try
 config.messages.emptySubCategoryResponse = "Sorry, we are unable to find any categories";
 config.messages.emptyProductResponse = "Sorry, no products found. Please try our other products";
 
+//data
+config.data={};
+config.data.menu1="5d94ab73f9ea197e645a7fc5/1576238495319-9TG8IEPPEWFVNQ8JOQLP/ke17ZwdGBToddI8pDm48kEpVg-ILAPna1wRh-xAJ9fRZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEv36x-EUL2-BSQ5feDhwGCbXuJBFqZ-erYzVouT8yOb9TwqchglLQOCYTRn7ZGxI/image-asset.jpeg";
+config.data.menu2="5d94ab73f9ea197e645a7fc5/1576238495459-HYZ209U8OCDD3414P6HL/ke17ZwdGBToddI8pDm48kEpVg-ILAPna1wRh-xAJ9fRZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEv36x-EUL2-BSQ5feDhwGCbXuJBFqZ-erYzVouT8yOb9TwqchglLQOCYTRn7ZGxI/image-asset.jpeg";
+config.data.menu3="5d94ab73f9ea197e645a7fc5/1576238495459-HYZ209U8OCDD3414P6HL/ke17ZwdGBToddI8pDm48kEpVg-ILAPna1wRh-xAJ9fRZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwEv36x-EUL2-BSQ5feDhwGCbXuJBFqZ-erYzVouT8yOb9TwqchglLQOCYTRn7ZGxI/image-asset.jpeg";
+config.data.menu4="5d94ab73f9ea197e645a7fc5/1575051797739-8L1M17E5JJS88G2HJ0EU/ke17ZwdGBToddI8pDm48kFVLZvLBdE-d1IyYFxRbMCl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXuMBqnGA4zDIm6XK3pYGveve9-PDnJJ6DxEOe-xmB9IRrZkNvCHU_SL75OklhLncA/Nicmac%2B-%2B28-09-198166.jpg";
+
+
 module.exports=config;

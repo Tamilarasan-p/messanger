@@ -3,7 +3,7 @@ dotenv.config({ path: __dirname + `/.env` });
 const dataConfig= require('../config/config');
 const request= require('request');
 const FB_PAGE_ACCESS_TOKEN=process.env.FB_PAGE_ACCESS_TOKEN;
-
+const BASE_URL=process.env.IMAGE_BASE_URL;
 
 let getFacebookUserName=(sender_id)=>{
 
@@ -152,30 +152,43 @@ const mainCategory_Response=()=>{
           "template_type": "generic",
           "elements":[
             {
-              "title": "Groceries",
-              "subtitle":"Fresho",
+              "title": "Make Up Brushes",
+              "subtitle":"Cosmetics",
+              "image_url":`${BASE_URL}${dataConfig.data.menu1}`,
               "buttons":[{
                   "type":"postback",
-                  "title":"View Items",
-                  "payload":"GROCERY"
+                  "title":"View Products",
+                  "payload":"BRUSHES"
                 }]
             },
             {
-                "title": "Grains",
-                "subtitle":"Fresho",
+                "title": "Highlighter",
+                "subtitle":"Cosmetics",
+                "image_url":`${BASE_URL}${dataConfig.data.menu2}`,
                 "buttons":[{
                     "type":"postback",
-                    "title":"View Items",
-                    "payload":"GRAINS"
+                    "title":"View Products",
+                    "payload":"HIGHLIGHTER"
                   }]
             },
             {
-                "title": "Spices",
-                "subtitle":"Fresho",
+                "title": "NIC & MIX PALETTE",
+                "subtitle":"Cosmetics",
+                "image_url":`${BASE_URL}${dataConfig.data.menu3}`,
                 "buttons":[{
                     "type":"postback",
-                    "title":"View Items",
-                    "payload":"SPICES"
+                    "title":"View Products",
+                    "payload":"NICMAC_PALETTE"
+                  }]
+            },
+            {
+                "title": "NIC & MIX EYE SHADOWS",
+                "subtitle":"Cosmetics",
+                "image_url":`${BASE_URL}${dataConfig.data.menu4}`,
+                "buttons":[{
+                    "type":"postback",
+                    "title":"View Products",
+                    "payload":"EYE_SHADOWS"
                   }]
             }
         
