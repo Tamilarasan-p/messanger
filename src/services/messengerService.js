@@ -39,6 +39,8 @@ let setUpMessengerPlatform=()=>{
                 ],
                 "whitelisted_domains":[
                     "https://bothub-marketing.herokuapp.com",
+                    "https://images.squarespace-cdn.com",
+                    "https://static1.squarespace.com"
                 ]   
             };
         
