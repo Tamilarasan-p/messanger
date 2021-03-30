@@ -38,6 +38,8 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
 }));
 
 
+
+
 app.get('/auth/logout', function(req, res) {
     req.logout();
     res.redirect('/');
