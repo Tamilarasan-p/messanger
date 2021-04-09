@@ -2,7 +2,7 @@ const dotenv=require('dotenv');
 dotenv.config({ path: __dirname + `/.env` });
 const passport=require('passport');
 const FacebookStrategy=require('passport-facebook').Strategy;
-const UserData=require('../models/account')
+const UserData=require('../models/account');
 
 passport.serializeUser(function (user, cb) {
     cb(null, user);

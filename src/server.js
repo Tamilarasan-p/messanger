@@ -31,7 +31,8 @@ app.use('/',initWebRoutes);
 
 const fbAuthController=require('./controllers/facebookAuthController');
 //authenticate
-app.get('/auth/facebook',passport.authenticate('facebook',{scope:['pages_show_list','pages_messaging']}));
+app.get('/auth/facebook',passport.authenticate('facebook',
+{scope:['email','pages_show_list','pages_messaging','pages_messaging_subscriptions','pages_read_engagement','pages_manage_ads','pages_read_user_content','pages_manage_metadata']}));
 app.get('/auth/facebook/callback',passport.authenticate('facebook',{
     successRedirect:'/home',
     failureRedirect:'/error'
